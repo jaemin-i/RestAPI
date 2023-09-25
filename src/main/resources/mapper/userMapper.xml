@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--<!— 위 코드가 mapper 설정을 하는 코드 —>-->
+
+<!--<!— Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. —>-->
+
+<mapper namespace="com.example.RestAPI.Repository.UserRepository">
+    <select id="findAll" resultType="UserInfo">
+        select * from userinfo;
+    </select>
+
+    <insert id="setUser" parameterType="UserInfo">
+        insert into userinfo (username, email, address1, address2) values (#{username}, #{email}, #{address1}, #{address2})
+    </insert>
+
+    <select id="findUser" resultType="UserInfo">
+        select * from userinfo where seq = #{seq};
+    </select>
+
+    <update id="updateUser" parameterType="UserInfo">
+        update userinfo set email = #{email}, address1 = #{address1}, address2 = #{address2} where seq = #{seq};
+    </update>
+
+    <delete id="deleteUser">
+        delete from userinfo where seq = ${seq}
+    </delete>
+</mapper>
